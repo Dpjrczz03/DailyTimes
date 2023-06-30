@@ -5,9 +5,13 @@ import Spinner from "./Spinner";
 
 
 const News = (props) => {
+    const [date,setDate]=useState(new Date())
+    const[year,setYear]=useState(date.getFullYear())
+    const[month,setMonth]=useState(String(date.getMonth()+1).padStart(2,"0"))
+    const[day,setDay]=useState(String(date.getDate()).padStart(2,'0'))
 
     const cardcolor1=props.cardcolor
-    const api = '18e2fc5154914e4b8b98abac11b11663'
+    const api = 'c9be0fac2fec4420a64bfcf457f848c6'
     const article = []
     const [articles, setArticles] = useState(article)
     const [totalResults, setTotalResults] = useState(0)
@@ -18,11 +22,13 @@ const News = (props) => {
     useEffect(() => {
 
         let url;
+        console.log(`${year}-${month}-${day}`)
         if (query === '') {
 
-            url = "https://newsapi.org/v2/everything?q=Mario&from=2023-05-01&to=2023-05-20&sortBy=popularity&apiKey=" + api + "&pageSize=10&page=" + page;
+            url = `https://newsapi.org/v2/everything?q=Mario&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` + api + "&pageSize=10&page=" + page;
         } else {
-            url = "https://newsapi.org/v2/everything?q=" + query + "&from=2023-05-01&to=2023-05-20&sortBy=popularity&apiKey=" + api + "&pageSize=10&page=" + page;
+
+            url = "https://newsapi.org/v2/everything?q=" + query + `&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` + api + "&pageSize=10&page=" + page;
         }
         props.setProgress(10)
         let data = fetch(url)
@@ -44,7 +50,7 @@ const fetchMoreData = async () => {
   let url;
   if (query === '') {
     url =
-      "https://newsapi.org/v2/everything?q=Mario&from=2023-05-01&to=2023-05-20&sortBy=popularity&apiKey=" +
+      `https://newsapi.org/v2/everything?q=Top&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` +
       api +
       "&pageSize=10&page=" +
       nextPage;
@@ -52,7 +58,7 @@ const fetchMoreData = async () => {
     url =
       "https://newsapi.org/v2/everything?q=" +
       query +
-      "&from=2023-05-01&to=2023-05-20&sortBy=popularity&apiKey=" +
+      `&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` +
       api +
       "&pageSize=10&page=" +
       nextPage;
