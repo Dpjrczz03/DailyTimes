@@ -34,8 +34,8 @@ const News = (props) => {
             .then(data => data.json())
             .then(data => {
                 props.setProgress(30)
-                setArticles(data.articles);
-                setTotalResults(data.totalResults);
+                setArticles(data.articles || []);
+                setTotalResults(data.totalResults || 0);
                 props.setProgress(100);
             }).catch(error => {
                 console.error("Error fetching data:", error);
@@ -51,8 +51,10 @@ const fetchMoreData = async () => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    setArticles((prevArticles) => prevArticles.concat(data.articles));
-    setTotalResults(data.totalResults);
+    if (data.articles) {
+        setArticles((prevArticles) => prevArticles.concat(data.articles));
+    }
+    setTotalResults(data.totalResults || 0);
     setPage(nextPage);
   } catch (error) {
     console.error("Error fetching data:", error);
