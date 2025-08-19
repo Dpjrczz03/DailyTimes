@@ -1,23 +1,54 @@
 import React from 'react';
 
-function Footer() {
+function Footer(props) {
     return (
-        <footer className="footer">
-            <div className="container">
-                <section className="social-links mb-4">
-                    <a href="#!" role="button"><i className="fab fa-facebook-f"></i></a>
-                    <a href="#!" role="button"><i className="fab fa-twitter"></i></a>
-                    <a href="#!" role="button"><i className="fab fa-google"></i></a>
-                    <a href="#!" role="button"><i className="fab fa-instagram"></i></a>
-                    <a href="#!" role="button"><i className="fab fa-linkedin-in"></i></a>
-                    <a href="#!" role="button"><i className="fab fa-github"></i></a>
-                </section>
-                <div className="copyright">
-                    © {new Date().getFullYear()} Copyright:
-                    <a href="https://github.com/Dpjrczz03">Dpjrczz03</a>
+        <div>
+            <footer className="bg-dark text-center text-white">
+
+                <div className="container p-4 pb-0">
+
+                    <section className="mb-4">
+
+                        <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i className="fab fa-facebook-f"></i
+                        ></a>
+
+
+                        <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i className="fab fa-twitter"></i
+                        ></a>
+
+
+                        <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i className="fab fa-google"></i
+                        ></a>
+
+
+                        <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i className="fab fa-instagram"></i
+                        ></a>
+
+
+                        <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i className="fab fa-linkedin-in"></i
+                        ></a>
+
+
+                        <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        ><i className="fab fa-github"></i
+                        ></a>
+                    </section>
+
                 </div>
-            </div>
-        </footer>
+
+                <div className="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2020 Copyright:
+                    <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                </div>
+
+            </footer>
+
+        </div>
     );
 }
 
