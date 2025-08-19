@@ -24,8 +24,14 @@
 /* Navbar */
 .navbar {
   background-color: var(--card-bg-light);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  height: 70px;
   border-bottom: 1px solid #eee;
 }
 
@@ -34,19 +40,64 @@ body.dark-mode .navbar {
   border-bottom: 1px solid #444;
 }
 
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+}
+
 .navbar-brand {
   color: var(--primary-color);
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  padding: 0;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 2rem;
+    gap: 1.5rem;
 }
 
 .nav-link {
   color: var(--dark-text-color);
   font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  position: relative;
 }
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
 
 body.dark-mode .nav-link {
   color: var(--light-text-color);
+}
+
+.navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .btn-dark-mode {
@@ -67,23 +118,26 @@ body.dark-mode .btn-dark-mode {
   color: var(--primary-color);
 }
 
-.form-control {
+.search-form .form-control {
   border-radius: 20px;
   border: 1px solid #ccc;
+  width: 250px;
+  transition: width 0.3s ease-in-out;
 }
 
-body.dark-mode .form-control {
+.search-form .form-control:focus {
+    width: 350px;
+}
+
+
+body.dark-mode .search-form .form-control {
   background-color: #555;
   border-color: #666;
   color: var(--light-text-color);
 }
 
 .btn-search {
-  border-radius: 20px;
-  background-color: var(--primary-color);
-  color: var(--light-text-color);
-  border: none;
-  font-weight: bold;
+  display: none; /* Hiding the search button for a cleaner look */
 }
 
 .btn-search:hover {
@@ -112,7 +166,7 @@ body.dark-mode .form-control {
     list-style: none;
     margin: 0;
     padding: 0;
-    z-index: 1000;
+    z-index: 1200;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
