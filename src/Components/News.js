@@ -5,13 +5,8 @@ import Spinner from "./Spinner";
 
 
 const News = (props) => {
-    const [date,setDate]=useState(new Date())
-    const[year,setYear]=useState(date.getFullYear())
-    const[month,setMonth]=useState(String(date.getMonth()+1).padStart(2,"0"))
-    const[day,setDay]=useState(String(date.getDate()).padStart(2,'0'))
-
-    const cardcolor1=props.cardcolor
-    const api = 'c9be0fac2fec4420a64bfcf457f848c6'
+    const cardStyle=props.cardStyle
+    const api = process.env.REACT_APP_NEWS_API_KEY
     const article = []
     const [articles, setArticles] = useState(article)
     const [totalResults, setTotalResults] = useState(0)
@@ -19,59 +14,47 @@ const News = (props) => {
 
     let query = props.query;
 
+    const getFromDate = () => {
+        const date = new Date();
+        date.setMonth(date.getMonth() - 1);
+        return date.toISOString().slice(0, 10);
+    }
+
+    const buildApiUrl = (q, p) => {
+        const fromDate = getFromDate();
+        const today = new Date().toISOString().slice(0, 10);
+        const searchQuery = q || 'Top';
+        return `https://newsapi.org/v2/everything?q=${searchQuery}&from=${fromDate}&to=${today}&sortBy=popularity&apiKey=${api}&pageSize=10&page=${p}`;
+    }
+
     useEffect(() => {
-
-        let url;
-        console.log(`${year}-${month}-${day}`)
-        if (query === '') {
-
-            url = `https://newsapi.org/v2/everything?q=Mario&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` + api + "&pageSize=10&page=" + page;
-        } else {
-
-            url = "https://newsapi.org/v2/everything?q=" + query + `&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` + api + "&pageSize=10&page=" + page;
-        }
+        const url = buildApiUrl(query, 1);
         props.setProgress(10)
-        let data = fetch(url)
+        fetch(url)
             .then(data => data.json())
             .then(data => {
                 props.setProgress(30)
-
                 setArticles(data.articles);
-
                 setTotalResults(data.totalResults);
+                props.setProgress(100);
+            }).catch(error => {
+                console.error("Error fetching data:", error);
+                props.setProgress(100);
             });
 
     }, [query])
 
-     props.setProgress(100)
 
 const fetchMoreData = async () => {
   const nextPage = page + 1;
-  let url;
-  if (query === '') {
-    url =
-      `https://newsapi.org/v2/everything?q=Top&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` +
-      api +
-      "&pageSize=10&page=" +
-      nextPage;
-  } else {
-    url =
-      "https://newsapi.org/v2/everything?q=" +
-      query +
-      `&from=${year}-${month==1?month:month-1}-${day<5?day-3:day}&to=${year}-${month}-${day}&sortBy=popularity&apiKey=` +
-      api +
-      "&pageSize=10&page=" +
-      nextPage;
-  }
+  const url = buildApiUrl(query, nextPage);
   try {
     const response = await fetch(url);
     const data = await response.json();
     setArticles((prevArticles) => prevArticles.concat(data.articles));
     setTotalResults(data.totalResults);
     setPage(nextPage);
-    console.log(articles.length);
   } catch (error) {
-
     console.error("Error fetching data:", error);
   }
 };
@@ -111,7 +94,7 @@ const fetchMoreData = async () => {
                                                     : "https://www.euractiv.com/wp-content/uploads/sites/2/2014/03/news-default.jpeg"
                                             }
                                             newsUrl={e.url}
-                                            cardcolor1={cardcolor1}
+                                            cardStyle={cardStyle}
                                         />
                                     </div>
                                 );

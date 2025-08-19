@@ -1,60 +1,44 @@
 import React, {Component, useState} from 'react'
 
 const NavBar = (props) => {
-    const [darkclass,setDarkclass]=useState("fa-solid fa-moon")
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const setQuery = props.setQuery;
-    const setCardcolor=props.setCardcolor
+    const setCardStyle = props.setCardStyle
     const [inputValue, setInputValue] = useState('');
-    const [c, setC] = useState(0)
     const[btnc, setBtnc]=useState({
         backgroundColor: "#2b3035"
 
         })
     const handleSubmit = (e) => {
-
         e.preventDefault();
         setQuery(inputValue);
-
-
     }
-    const handleDarkClick = (e) => {
-        setC(c + 1)
-        if (c % 2 === 0) {
-            setDarkclass("fa-solid fa-sun")
+    const handleDarkClick = () => {
+        setIsDarkMode(!isDarkMode);
+        if (!isDarkMode) {
             props.setStyle({
-
                 backgroundColor: "#232323"
-
-
             })
-            setCardcolor({
+            setCardStyle({
                 backgroundColor: "#1f1f1f",
                 color:"white",
                 height: "380px"
             })
-
-        }
-        else{
-            setDarkclass("fa-solid fa-moon")
+        } else {
             props.setStyle({
-
                 backgroundColor: "white"
-
-
             })
-            setCardcolor({
+            setCardStyle({
                 backgroundColor: "#eeeeee",
                 color: "black",
                 height: "380px"
             })
-
         }
-
     }
 
 
     return (
-        <div className="faaltu">
+        <div className="navbar-container">
             <nav className="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">DailyTimes
@@ -72,12 +56,12 @@ const NavBar = (props) => {
                                 <a className="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/">About</a>
+                                <a className="nav-link" href="https://github.com/Dpjrczz03/DailyTimes" target="_blank" rel="noreferrer">About</a>
                             </li>
 
                         </ul>
                         <button className="btn btn-outline-success darkbtn" style={btnc} onClick={handleDarkClick}><i
-                            className={darkclass}></i></button>
+                            className={isDarkMode ? "fa-solid fa-sun" : "fa-solid fa-moon"}></i></button>
                         <form className="d-flex" role="search" onSubmit={handleSubmit}>
                             <input className="form-control me-2" type="search" placeholder="Enter Category"
                                    onChange={(e) => setInputValue(e.target.value)} aria-label="Search"

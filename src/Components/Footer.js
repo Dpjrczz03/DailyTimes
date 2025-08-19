@@ -41,9 +41,9 @@ function Footer(props) {
 
                 </div>
 
-                <div className="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                    © 2020 Copyright:
-                    <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
+                    © 2023 Copyright:
+                    <a className="text-white" href="https://github.com/Dpjrczz03">Dpjrczz03</a>
                 </div>
 
             </footer>

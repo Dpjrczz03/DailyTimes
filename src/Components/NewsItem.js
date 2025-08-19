@@ -1,12 +1,12 @@
 import React from 'react';
 
 function NewsItem(props) {
-    const cardcolor2=props.cardcolor1
+    const cardStyle=props.cardStyle
     return (
 
         <div>
-            <a href={props.newsUrl} target="_blank">
-                <div className="card " style={cardcolor2}>
+            <a href={props.newsUrl} target="_blank"  rel="noreferrer">
+                <div className="card " style={cardStyle}>
 
                     <img
                         src={props.imageUrl}
