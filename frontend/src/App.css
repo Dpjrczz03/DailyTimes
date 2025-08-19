@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.search-bar {
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 1em;
+  width: 50%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  font-size: 1em;
+  margin-left: 10px;
+  border: none;
+  background-color: #282c34;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.news-feed {
+  padding: 20px;
+}
