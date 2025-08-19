@@ -9,24 +9,16 @@ import Footer from "./Components/Footer";
 
 const App = () => {
     const [progress, setProgress]=useState(0)
-    const[cardStyle,setCardStyle]=useState({
-        backgroundColor: "#eeeeee",
-        color: "black",
-        height: "380px"
-    })
     const [query, setQuery] = useState('Top');
-    const [style, setStyle]=useState({
-        backgroundColor: "white"
-    })
+
     return (
         <div>
-            <NavBar setQuery={setQuery} setStyle={setStyle} setCardStyle={setCardStyle}/>
+            <NavBar setQuery={setQuery}/>
             <LoadingBar
-                color='#1e6640'
+                color='var(--primary-color)'
                 progress={progress}
-                // onLoaderFinished={() => setProgress(0)}
             />
-            <News query={query} setProgress={setProgress} style={style} cardStyle={cardStyle}/>
+            <News query={query} setProgress={setProgress}/>
             <Footer/>
         </div>
     )
