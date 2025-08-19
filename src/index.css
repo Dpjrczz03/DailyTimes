@@ -8,6 +8,7 @@ body {
     background-color: var(--light-bg-color);
     color: var(--dark-text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding-top: 70px;
 }
 
 body.dark-mode {
