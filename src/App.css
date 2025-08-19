@@ -189,6 +189,32 @@ body.dark-mode .suggestions-list li:hover {
     background-color: #555;
 }
 
+.suggestion-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.suggestions-list li {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+}
+
+.suggestion-title {
+    font-weight: 600;
+}
+
+.suggestion-source {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+body.dark-mode .suggestion-source {
+    color: #aaa;
+}
+
 
 /* News Grid & Cards */
 .news-grid {

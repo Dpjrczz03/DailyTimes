@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-
-const newsCategories = [
-    "Technology", "Business", "Health", "Science", "Sports", "Entertainment",
-    "Apple", "Tesla", "Bitcoin", "Politics", "World", "India"
-];
+import useDebounce from '../hooks/useDebounce';
+import Spinner from './Spinner';
 
 const NavBar = (props) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
     const { setQuery } = props;
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [suggestionsLoading, setSuggestionsLoading] = useState(false);
+
+    const debouncedSearchTerm = useDebounce(inputValue, 500);
 
     useEffect(() => {
         if (isDarkMode) {
@@ -19,22 +19,40 @@ const NavBar = (props) => {
         }
     }, [isDarkMode]);
 
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        setInputValue(value);
-        if (value.length > 0) {
-            const filteredSuggestions = newsCategories.filter(cat =>
-                cat.toLowerCase().startsWith(value.toLowerCase())
-            );
-            setSuggestions(filteredSuggestions);
+    useEffect(() => {
+        if (debouncedSearchTerm) {
+            setSuggestionsLoading(true);
+            const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+            // Using a different endpoint for suggestions might be better, but for now, 'everything' will work.
+            const url = `https://newsapi.org/v2/everything?q=${debouncedSearchTerm}&apiKey=${apiKey}&pageSize=5`;
+
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.articles) {
+                        setSuggestions(data.articles);
+                    } else {
+                        setSuggestions([]);
+                    }
+                    setSuggestionsLoading(false);
+                })
+                .catch(error => {
+                    console.error("Error fetching suggestions:", error);
+                    setSuggestionsLoading(false);
+                    setSuggestions([]);
+                });
         } else {
             setSuggestions([]);
         }
+    }, [debouncedSearchTerm]);
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
     };
 
-    const handleSuggestionClick = (suggestion) => {
-        setInputValue(suggestion);
-        setQuery(suggestion);
+    const handleSuggestionClick = (suggestionTitle) => {
+        setInputValue(suggestionTitle);
+        setQuery(suggestionTitle);
         setSuggestions([]);
     };
 
@@ -71,13 +89,20 @@ const NavBar = (props) => {
                                 aria-label="Search"
                                 value={inputValue}
                             />
-                            {suggestions.length > 0 && (
+                                {(suggestions.length > 0 || suggestionsLoading) && (
                                 <ul className="suggestions-list">
-                                    {suggestions.map(suggestion => (
-                                        <li key={suggestion} onClick={() => handleSuggestionClick(suggestion)}>
-                                            {suggestion}
-                                        </li>
-                                    ))}
+                                        {suggestionsLoading ? (
+                                            <div className="suggestion-loader">
+                                                <Spinner />
+                                            </div>
+                                        ) : (
+                                            suggestions.map(suggestion => (
+                                                <li key={suggestion.url} onClick={() => handleSuggestionClick(suggestion.title)}>
+                                                    <span className="suggestion-title">{suggestion.title}</span>
+                                                    <span className="suggestion-source">{suggestion.source.name}</span>
+                                                </li>
+                                            ))
+                                        )}
                                 </ul>
                             )}
                         </div>
