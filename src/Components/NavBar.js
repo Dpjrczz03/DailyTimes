@@ -46,6 +46,19 @@ const NavBar = (props) => {
         }
     }, [debouncedSearchTerm]);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('.search-wrapper')) {
+                setSuggestions([]);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
@@ -69,15 +82,17 @@ const NavBar = (props) => {
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <a className="navbar-brand" href="/">DailyTimes</a>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="https://github.com/Dpjrczz03/DailyTimes" target="_blank" rel="noreferrer">About</a>
-                    </li>
-                </ul>
+                <div className="navbar-left">
+                    <a className="navbar-brand" href="/">DailyTimes</a>
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="https://github.com/Dpjrczz03/DailyTimes" target="_blank" rel="noreferrer">About</a>
+                        </li>
+                    </ul>
+                </div>
                 <div className="navbar-controls">
                     <form className="search-form" role="search" onSubmit={handleSubmit}>
                         <div className="search-wrapper">

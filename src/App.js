@@ -12,7 +12,7 @@ const App = () => {
     const [query, setQuery] = useState('Top');
 
     return (
-        <div>
+        <div className="app-container">
             <NavBar setQuery={setQuery}/>
             <LoadingBar
                 color='var(--primary-color)'

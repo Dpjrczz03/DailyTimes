@@ -1,12 +1,19 @@
 /* General Layout & Typography */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    flex-grow: 1;
+    padding-top: 2rem;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
-}
-
-.main {
-  padding-top: 2rem;
 }
 
 .page-title {
@@ -48,6 +55,11 @@ body.dark-mode .navbar {
     max-width: 1400px;
     margin: 0 auto;
     height: 100%;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
 }
 
 .navbar-brand {
