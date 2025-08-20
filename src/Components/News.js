@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import NewsItem from "./NewsItem";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Spinner from "./Spinner";
+import NewsSkeleton from "./NewsSkeleton";
 
 
 const News = (props) => {
@@ -9,6 +10,7 @@ const News = (props) => {
     const [articles, setArticles] = useState([])
     const [totalResults, setTotalResults] = useState(0)
     const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(true);
 
     const { query, setProgress } = props;
 
@@ -27,6 +29,7 @@ const News = (props) => {
 
     useEffect(() => {
         const fetchNews = async () => {
+            setLoading(true);
             setProgress(10);
             const url = buildApiUrl(query, 1);
             try {
@@ -39,6 +42,7 @@ const News = (props) => {
                 console.error("Error fetching data:", error);
             } finally {
                 setProgress(100);
+                setLoading(false);
             }
         };
         fetchNews();
@@ -68,33 +72,37 @@ const News = (props) => {
             <h1 className="page-title">
                 <span>DailyTimes</span> - {query} Headlines
             </h1>
-            <InfiniteScroll
-                dataLength={articles.length}
-                next={fetchMoreData}
-                hasMore={articles.length < totalResults}
-                loader={<Spinner/>}
-                className="news-grid"
-            >
-                {articles.map((e) => {
-                    if (e && e.url) {
-                        return (
-                            <NewsItem
-                                key={e.url}
-                                title={e.title || ""}
-                                description={
-                                    e.description ? e.description.slice(0, 100) : ""
-                                }
-                                imageUrl={
-                                    e.urlToImage || "https://www.euractiv.com/wp-content/uploads/sites/2/2014/03/news-default.jpeg"
-                                }
-                                newsUrl={e.url}
-                            />
-                        );
-                    } else {
-                        return null;
-                    }
-                })}
-            </InfiniteScroll>
+            {loading ? (
+                <NewsSkeleton />
+            ) : (
+                <InfiniteScroll
+                    dataLength={articles.length}
+                    next={fetchMoreData}
+                    hasMore={articles.length < totalResults}
+                    loader={<Spinner/>}
+                    className="news-grid"
+                >
+                    {articles.map((e) => {
+                        if (e && e.url) {
+                            return (
+                                <NewsItem
+                                    key={e.url}
+                                    title={e.title || ""}
+                                    description={
+                                        e.description ? e.description.slice(0, 100) : ""
+                                    }
+                                    imageUrl={
+                                        e.urlToImage || "https://www.euractiv.com/wp-content/uploads/sites/2/2014/03/news-default.jpeg"
+                                    }
+                                    newsUrl={e.url}
+                                />
+                            );
+                        } else {
+                            return null;
+                        }
+                    })}
+                </InfiniteScroll>
+            )}
         </div>
     </div>
     );
