@@ -79,7 +79,7 @@ const News = (props) => {
                     dataLength={articles.length}
                     next={fetchMoreData}
                     hasMore={articles.length < totalResults}
-                    loader={<Spinner/>}
+                    loader={<div className="spinner-container"><Spinner/></div>}
                     className="news-grid"
                 >
                     {articles.map((e) => {

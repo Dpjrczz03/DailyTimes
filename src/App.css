@@ -283,6 +283,11 @@ body.dark-mode .news-item-card {
   margin-bottom: 1rem;
 }
 
+.spinner-container {
+    text-align: center;
+    width: 100%;
+}
+
 /* Footer */
 .footer {
   background-color: var(--dark-bg-color);
