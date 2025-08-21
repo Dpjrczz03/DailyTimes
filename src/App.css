@@ -34,7 +34,10 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-width: 1px;
+  border-style: solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to bottom right, #f72585, #b5179e, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9, #4361ee, #4895ef, #4cc9f0);
   padding: 0 2rem;
   position: fixed;
   top: 0;
@@ -46,7 +49,7 @@
 
 body.dark-mode .navbar {
   background: rgba(30, 30, 30, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* The border-image will be inherited, no need to override unless we want a different one for dark mode */
 }
 
 .navbar-container {
@@ -177,7 +180,10 @@ body.dark-mode .search-form .form-control {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-width: 1px;
+    border-style: solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to bottom right, #f72585, #b5179e, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9, #4361ee, #4895ef, #4cc9f0);
     border-radius: 12px;
     list-style: none;
     margin: 8px 0 0 0;
@@ -187,7 +193,7 @@ body.dark-mode .search-form .form-control {
 
 body.dark-mode .suggestions-list {
     background: rgba(40, 40, 40, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* The border-image will be inherited */
 }
 
 .suggestions-list li {
@@ -243,7 +249,10 @@ body.dark-mode .suggestion-source {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-width: 1px;
+  border-style: solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to bottom right, #f72585, #b5179e, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9, #4361ee, #4895ef, #4cc9f0);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -261,7 +270,7 @@ body.dark-mode .suggestion-source {
 
 body.dark-mode .news-item-card {
   background: rgba(40, 40, 40, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* The border-image will be inherited */
 }
 
 body.dark-mode .news-item-card:hover {
@@ -308,13 +317,19 @@ body.dark-mode .news-item-card:hover {
   margin-top: 3rem;
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-top-width: 1px;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-style: solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #f72585, #b5179e, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9, #4361ee, #4895ef, #4cc9f0);
 }
 
 body.dark-mode .footer {
     color: var(--light-text-color);
     background: rgba(40, 40, 40, 0.25);
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    /* border-image is inherited */
 }
 
 .footer .container {

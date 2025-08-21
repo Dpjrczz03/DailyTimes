@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #FC8019;
-  --secondary-color: #AD4728;
-  --light-accent-color: #FCA65E;
-  --dark-text-color: #282C3F;
-  --light-text-color: #FFFFFF;
-  --light-bg-color: #F7F7F7;
-  --dark-bg-color: #282C3F;
-  --card-bg-light: #FFFFFF;
-  --card-bg-dark: #3E4459;
+  --primary-color: #f72585; /* Vibrant Pink */
+  --secondary-color: #7209b7; /* Deep Purple */
+  --light-accent-color: #4cc9f0; /* Bright Cyan */
+  --dark-text-color: #f0f0f0; /* Soft white for default text */
+  --light-text-color: #ffffff; /* Luminous white for highlighted text */
+  --light-bg-color: rgba(255, 255, 255, 0.1); /* Faintly visible light background */
+  --dark-bg-color: #0f0c29; /* Deep space blue */
+  --card-bg-light: rgba(255, 255, 255, 0.1);
+  --card-bg-dark: rgba(30, 30, 30, 0.1);
 }

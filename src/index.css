@@ -10,15 +10,15 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-    color: var(--dark-text-color);
+    background: linear-gradient(120deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: #f0f0f0;
     transition: background-color 0.3s ease, color 0.3s ease;
     background-attachment: fixed;
 }
 
 body.dark-mode {
-    background: linear-gradient(120deg, #2c3e50 0%, #4ca1af 100%);
-    color: var(--light-text-color);
+    background: linear-gradient(120deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: #f0f0f0;
 }
 /**{*/
 /*    animation: rot 2s infinite;*/
