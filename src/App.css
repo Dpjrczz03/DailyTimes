@@ -286,6 +286,7 @@ body.dark-mode .news-item-card {
 .spinner-container {
     text-align: center;
     width: 100%;
+    grid-column: 1 / -1;
 }
 
 /* Footer */
