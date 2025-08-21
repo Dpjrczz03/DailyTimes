@@ -96,8 +96,6 @@ a {
     text-decoration: none;
 }
 .lds-ring {
-
-    margin-left: 50% ;
   display: inline-block;
   position: relative;
   width: 80px;
