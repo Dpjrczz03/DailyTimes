@@ -88,9 +88,9 @@ const NavBar = (props) => {
                         <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link" href="https://github.com/Dpjrczz03/DailyTimes" target="_blank" rel="noreferrer">About</a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <div className="navbar-controls">
