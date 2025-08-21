@@ -10,14 +10,15 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--light-bg-color);
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
     color: var(--dark-text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    background-attachment: fixed;
 }
 
 body.dark-mode {
-  background-color: var(--dark-bg-color);
-  color: var(--light-text-color);
+    background: linear-gradient(120deg, #2c3e50 0%, #4ca1af 100%);
+    color: var(--light-text-color);
 }
 /**{*/
 /*    animation: rot 2s infinite;*/

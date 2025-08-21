@@ -30,8 +30,11 @@
 
 /* Navbar */
 .navbar {
-  background-color: var(--card-bg-light);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0 2rem;
   position: fixed;
   top: 0;
@@ -39,12 +42,11 @@
   right: 0;
   z-index: 1100;
   height: 70px;
-  border-bottom: 1px solid #eee;
 }
 
 body.dark-mode .navbar {
-  background-color: var(--card-bg-dark);
-  border-bottom: 1px solid #444;
+  background: rgba(30, 30, 30, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .navbar-container {
@@ -171,20 +173,21 @@ body.dark-mode .search-form .form-control {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--card-bg-light);
-    border: 1px solid #ddd;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px) saturate(160%);
+    -webkit-backdrop-filter: blur(5px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
     list-style: none;
-    margin: 0;
+    margin: 8px 0 0 0;
     padding: 0;
     z-index: 1200;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 body.dark-mode .suggestions-list {
-    background-color: var(--card-bg-dark);
-    border-color: #444;
+    background: rgba(40, 40, 40, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .suggestions-list li {
@@ -236,9 +239,12 @@ body.dark-mode .suggestion-source {
 }
 
 .news-item-card {
-  background-color: var(--card-bg-light);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px) saturate(160%);
+  -webkit-backdrop-filter: blur(5px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
@@ -249,13 +255,12 @@ body.dark-mode .suggestion-source {
 
 .news-item-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 body.dark-mode .news-item-card {
-  background-color: var(--card-bg-dark);
-  box-shadow: none;
-  border: 1px solid #444;
+  background: rgba(40, 40, 40, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .news-item-card img {
@@ -291,11 +296,20 @@ body.dark-mode .news-item-card {
 
 /* Footer */
 .footer {
-  background-color: var(--dark-bg-color);
-  color: var(--light-text-color);
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--dark-text-color);
   text-align: center;
   padding: 2rem 0;
   margin-top: 3rem;
+  backdrop-filter: blur(5px) saturate(160%);
+  -webkit-backdrop-filter: blur(5px) saturate(160%);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .footer {
+    color: var(--light-text-color);
+    background: rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .footer .container {
